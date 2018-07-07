@@ -6,6 +6,7 @@
 package com.sg.text.based.consolegame.dao;
 
 import com.sg.text.based.consolegame.model.Monster;
+import com.sg.text.based.consolegame.model.Player;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,4 +19,14 @@ public interface Dao {
     public void loadMonsters();
 
     public Monster spawnRandomLowTierMonster();
+
+    public void setPlayerName(String playerName);
+
+    public String getPlayerName();
+    
+    public Player getCurrentPlayerStats();
+    
+    public void setCurrentPlayerStats(Player currentPlayerStats);
+    
+    public void loadDefaultStats();
 }

@@ -6,6 +6,7 @@
 package com.sg.text.based.consolegame.dao;
 
 import com.sg.text.based.consolegame.model.Monster;
+import com.sg.text.based.consolegame.model.Player;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,8 +20,11 @@ import java.util.Random;
 public class DaoImpl implements Dao {
 
     List<Monster> lowTierMonsters = new ArrayList<>();
+    String playerName;
     Random randomizer = new Random();
+    private Player currentPlayerStats;
 
+    @Override
     public void loadMonsters() {
 
         lowTierMonsters.add(goblin());
@@ -28,6 +32,28 @@ public class DaoImpl implements Dao {
         lowTierMonsters.add(imp());
         lowTierMonsters.add(angryGoat());
 
+    }
+    
+    public void loadDefaultStats(){
+        Player newPlayer = new Player();
+        newPlayer.setName(this.getPlayerName());
+        newPlayer.setAttackPoints(3);
+        newPlayer.setDefensePoints(1);
+        newPlayer.setHealthPoints(6);
+        newPlayer.setSpellPoints(0);
+        this.setCurrentPlayerStats(newPlayer);
+    }
+    
+    
+    
+    @Override
+    public void setPlayerName(String playerName){
+        this.playerName = playerName;
+    }
+    
+    @Override
+    public String getPlayerName(){
+        return playerName;
     }
 
     public Monster goblin() {
@@ -97,9 +123,18 @@ public class DaoImpl implements Dao {
     @Override
     public Monster spawnRandomLowTierMonster() {
         loadMonsters();
-        int spawner = randomizer.nextInt(lowTierMonsters.size()) + 1;
+        int spawner = randomizer.nextInt(lowTierMonsters.size() - 1) + 1;
         Monster currentMonster = lowTierMonsters.get(spawner);
         return currentMonster;
+    }
+
+    @Override
+    public Player getCurrentPlayerStats() {
+        return currentPlayerStats;
+    }
+    @Override
+    public void setCurrentPlayerStats(Player currentPlayerStats) {
+        this.currentPlayerStats = currentPlayerStats;
     }
 
 }

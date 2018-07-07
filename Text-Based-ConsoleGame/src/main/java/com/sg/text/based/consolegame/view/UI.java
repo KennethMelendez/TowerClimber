@@ -23,19 +23,27 @@ public class UI {
     }
     
     public void intro(){
+        io.displayText("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        io.displayText("");
         io.displayText(" Welcome to.. Tower Climber");
+        io.displayText("");
+        io.displayText("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         io.displayText("");
         pressAnyKeyToContinue();
     }
 
-    Player battlePhase(Player player, Monster monster) {
+    public Player battlePhase(Player player, Monster monster) {
         boolean isAlive = true;
         io.displayText("You encountered " + monster.getName() + " ...");
         io.displayText(monster.getBattleCry());
         pressAnyKeyToContinue();
         while(player.getHealthPoints() >= 0 || monster.getHealthPoints() >= 0){
+            io.displayText(player.getName() +" HP : " + player.getHealthPoints() + " | " + monster.getName() +" HP : " + monster.getHealthPoints());
+            io.displayText("");
             io.displayText(player.getName() + " attacks!");
+            int playerHP = player.getHealthPoints();
             int monstersHP = monster.getHealthPoints() - player.getAttackPoints();
+            io.displayText(monster.getName() +" HP : " + monstersHP);
             if(monstersHP <= 0){
                 break;
             } else {
@@ -43,20 +51,29 @@ public class UI {
             }
             io.displayText(monster.getName() + " attacks!");
             pressAnyKeyToContinue();
-            int playersHP = player.getHealthPoints() - monster.getAttackPoints();
-            if(playersHP <= 0){
+            playerHP = playerHP - (monster.getAttackPoints() - player.getDefensePoints());
+            if(playerHP <= 0){
                 isAlive = false;
                 break;
             } else {
-                player.setHealthPoints(monstersHP);
+                player.setHealthPoints(playerHP);
             }
         }
         io.battleCompleteMessage("You died..", "You survived!!", isAlive);
         return player;
     }
     
-    void pressAnyKeyToContinue() {
+    public void pressAnyKeyToContinue() {
         io.readResponse("Press any key to continue.");
+    }
+    
+    public String whatIsYourNamePrompt(){
+        String name = io.readResponse("What is your name..?");
+        return name;
+    }
+    
+    public void welcomeUser(String name){
+        io.displayText("Welcome ... " + name);
     }
 
 }

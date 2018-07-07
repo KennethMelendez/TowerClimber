@@ -7,6 +7,7 @@ package com.sg.text.based.consolegame.serviceLayer;
 
 import com.sg.text.based.consolegame.model.Monster;
 import com.sg.text.based.consolegame.dao.Dao;
+import com.sg.text.based.consolegame.model.Player;
 
 /**
  *
@@ -28,6 +29,31 @@ public class ServiceLayerImpl implements ServiceLayer {
     @Override
     public Monster spawnRandomLowTierMonster() {
         return dao.spawnRandomLowTierMonster();
+    }
+
+    @Override
+    public void setPlayerName(String playerName) {
+       dao.setPlayerName(playerName);
+    }
+
+    @Override
+    public String getPlayerName() {
+        return dao.getPlayerName();
+    }
+
+    @Override
+    public Player getCurrentPlayerStats() {
+        return dao.getCurrentPlayerStats();
+    }
+
+    @Override
+    public void setCurrentPlayerStats(Player currentPlayerStats) {
+        dao.setCurrentPlayerStats(currentPlayerStats);
+    }
+
+    @Override
+    public void loadDefaultStats() {
+        dao.loadDefaultStats();
     }
     
 }

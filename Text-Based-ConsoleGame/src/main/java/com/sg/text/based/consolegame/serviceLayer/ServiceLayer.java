@@ -6,6 +6,7 @@
 package com.sg.text.based.consolegame.serviceLayer;
 
 import com.sg.text.based.consolegame.model.Monster;
+import com.sg.text.based.consolegame.model.Player;
 
 /**
  *
@@ -14,6 +15,16 @@ import com.sg.text.based.consolegame.model.Monster;
 public interface ServiceLayer {
 
     public void loadMonsters();
-    
+
     public Monster spawnRandomLowTierMonster();
+
+    public void setPlayerName(String playerName);
+
+    public String getPlayerName();
+
+    public Player getCurrentPlayerStats();
+
+    public void setCurrentPlayerStats(Player currentPlayerStats);
+    
+    public void loadDefaultStats();
 }
