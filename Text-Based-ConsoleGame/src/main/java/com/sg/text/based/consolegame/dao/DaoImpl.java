@@ -22,6 +22,9 @@ public class DaoImpl implements Dao {
     List<Monster> lowTierMonsters = new ArrayList<>();
     String playerName;
     Random randomizer = new Random();
+    int playerSteps = 1;
+    int towerFloor = 0;
+    
     private Player currentPlayerStats;
 
     @Override
@@ -34,25 +37,54 @@ public class DaoImpl implements Dao {
 
     }
     
-    public void loadDefaultStats(){
+    
+    @Override
+    public boolean checkIfNextFloor(){
+        return this.getPlayerSteps() % 10 == 0;
+    }
+
+    @Override
+    public int getPlayerSteps() {
+        return playerSteps;
+    }
+    
+    
+
+    @Override
+    public void setPlayerSteps(int playerSteps) {
+        this.playerSteps = playerSteps;
+    }
+
+    @Override
+    public int getTowerFloor() {
+        return towerFloor;
+    }
+
+    @Override
+    public void setTowerFloor(int towerFloor) {
+        this.towerFloor = towerFloor;
+    }
+    
+    
+
+    @Override
+    public void loadDefaultStats() {
         Player newPlayer = new Player();
         newPlayer.setName(this.getPlayerName());
         newPlayer.setAttackPoints(3);
         newPlayer.setDefensePoints(1);
-        newPlayer.setHealthPoints(6);
+        newPlayer.setHealthPoints(15);
         newPlayer.setSpellPoints(0);
         this.setCurrentPlayerStats(newPlayer);
     }
-    
-    
-    
+
     @Override
-    public void setPlayerName(String playerName){
+    public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
-    
+
     @Override
-    public String getPlayerName(){
+    public String getPlayerName() {
         return playerName;
     }
 
@@ -61,7 +93,7 @@ public class DaoImpl implements Dao {
         Monster goblin = new Monster();
         // setting the name and stats of the monster
         goblin.setName("Goblin");
-        int maxHealthPoints = randomizer.nextInt(30) + 1;
+        int maxHealthPoints = randomizer.nextInt(6) + 1;
         goblin.setHealthPoints(maxHealthPoints);
         int attack = randomizer.nextInt(5) + 1;
         goblin.setAttackPoints(attack);
@@ -69,6 +101,8 @@ public class DaoImpl implements Dao {
         goblin.setDefensePoints(defense);
         goblin.setBattleCry("*grunts* *cackles*");
         goblin.setSpellPoints(0);
+        goblin.setExp(2);
+        goblin.setGold(2);
         return goblin;
     }
 
@@ -77,7 +111,7 @@ public class DaoImpl implements Dao {
         Monster bandit = new Monster();
         // setting the name and stats of the monster
         bandit.setName("Bandit");
-        int maxHealthPoints = randomizer.nextInt(30) + 1;
+        int maxHealthPoints = randomizer.nextInt(5) + 1;
         bandit.setHealthPoints(maxHealthPoints);
         int attack = randomizer.nextInt(5) + 1;
         bandit.setAttackPoints(attack);
@@ -85,6 +119,8 @@ public class DaoImpl implements Dao {
         bandit.setDefensePoints(defense);
         bandit.setBattleCry("*That's a nice watch you got there...*");
         bandit.setSpellPoints(0);
+        bandit.setExp(2);
+        bandit.setGold(5);
         return bandit;
     }
 
@@ -93,7 +129,7 @@ public class DaoImpl implements Dao {
         Monster imp = new Monster();
         // setting the name and stats of the monster
         imp.setName("Imp");
-        int maxHealthPoints = randomizer.nextInt(30) + 1;
+        int maxHealthPoints = randomizer.nextInt(7) + 1;
         imp.setHealthPoints(maxHealthPoints);
         int attack = randomizer.nextInt(5) + 1;
         imp.setAttackPoints(attack);
@@ -101,6 +137,8 @@ public class DaoImpl implements Dao {
         imp.setDefensePoints(defense);
         imp.setBattleCry("*SHRIEEEEKSSS*");
         imp.setSpellPoints(0);
+        imp.setExp(2);
+        imp.setGold(1);
         return imp;
     }
 
@@ -109,7 +147,7 @@ public class DaoImpl implements Dao {
         Monster angryGoat = new Monster();
         // setting the name and stats of the monster
         angryGoat.setName("AngryGoat");
-        int maxHealthPoints = randomizer.nextInt(30) + 1;
+        int maxHealthPoints = randomizer.nextInt(15) + 1;
         angryGoat.setHealthPoints(maxHealthPoints);
         int attack = randomizer.nextInt(5) + 1;
         angryGoat.setAttackPoints(attack);
@@ -117,6 +155,8 @@ public class DaoImpl implements Dao {
         angryGoat.setDefensePoints(defense);
         angryGoat.setBattleCry("*I'm a goat, and I'm angry intellectual.*");
         angryGoat.setSpellPoints(0);
+        angryGoat.setExp(2);
+        angryGoat.setGold(1);
         return angryGoat;
     }
 
@@ -132,6 +172,7 @@ public class DaoImpl implements Dao {
     public Player getCurrentPlayerStats() {
         return currentPlayerStats;
     }
+
     @Override
     public void setCurrentPlayerStats(Player currentPlayerStats) {
         this.currentPlayerStats = currentPlayerStats;

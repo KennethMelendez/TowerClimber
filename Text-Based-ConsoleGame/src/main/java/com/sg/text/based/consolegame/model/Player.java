@@ -18,9 +18,11 @@ public class Player {
     private int spellPoints;
     private int attackPoints;
     private int defensePoints;
+    private int exp;
     private Item[] inventory = new Item[4];
     private Spells[] spells = new Spells[4];
     private Weapon equipedWeapon;
+    private int gold;
 
     public String getName() {
         return name;
@@ -62,6 +64,14 @@ public class Player {
         this.defensePoints = defensePoints;
     }
 
+    public int getExp() {
+        return exp;
+    }
+
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
+
     public Item[] getInventory() {
         return inventory;
     }
@@ -86,17 +96,27 @@ public class Player {
         this.equipedWeapon = equipedWeapon;
     }
 
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 19 * hash + Objects.hashCode(this.name);
-        hash = 19 * hash + this.healthPoints;
-        hash = 19 * hash + this.spellPoints;
-        hash = 19 * hash + this.attackPoints;
-        hash = 19 * hash + this.defensePoints;
-        hash = 19 * hash + Arrays.deepHashCode(this.inventory);
-        hash = 19 * hash + Arrays.deepHashCode(this.spells);
-        hash = 19 * hash + Objects.hashCode(this.equipedWeapon);
+        int hash = 7;
+        hash = 13 * hash + Objects.hashCode(this.name);
+        hash = 13 * hash + this.healthPoints;
+        hash = 13 * hash + this.spellPoints;
+        hash = 13 * hash + this.attackPoints;
+        hash = 13 * hash + this.defensePoints;
+        hash = 13 * hash + this.exp;
+        hash = 13 * hash + Arrays.deepHashCode(this.inventory);
+        hash = 13 * hash + Arrays.deepHashCode(this.spells);
+        hash = 13 * hash + Objects.hashCode(this.equipedWeapon);
+        hash = 13 * hash + this.gold;
         return hash;
     }
 
@@ -124,6 +144,12 @@ public class Player {
         if (this.defensePoints != other.defensePoints) {
             return false;
         }
+        if (this.exp != other.exp) {
+            return false;
+        }
+        if (this.gold != other.gold) {
+            return false;
+        }
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
@@ -139,7 +165,7 @@ public class Player {
         return true;
     }
 
-    
+  
     
     
     

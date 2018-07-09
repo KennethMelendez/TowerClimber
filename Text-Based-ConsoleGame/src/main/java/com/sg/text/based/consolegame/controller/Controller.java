@@ -24,10 +24,36 @@ public class Controller {
     }
 
     public void run() {
+
         this.displayIntro();
         this.promptName();
         this.welcomeUser();
-        this.battlePhase();
+        this.plot();
+
+        do {
+
+            int currentStep = sl.getPlayerSteps();
+            int currentFloor = sl.getTowerFloor();
+            currentStep += 1;
+            sl.setPlayerSteps(currentStep);
+ 
+            if (sl.checkIfNextFloor()) {
+
+                
+               
+                
+                
+
+                currentFloor += 1;
+                sl.setTowerFloor(currentFloor);
+                this.newFloorPrompt(sl.getTowerFloor());
+
+            } else {
+                this.battlePhase();
+
+            }
+
+        } while (sl.getCurrentPlayerStats().getHealthPoints() > 0);
 
     }
 
@@ -38,18 +64,26 @@ public class Controller {
     private void promptName() {
         String name = ui.whatIsYourNamePrompt();
         sl.setPlayerName(name);
-        
-        
+
     }
 
     private void welcomeUser() {
-       ui.welcomeUser(sl.getPlayerName());
-       sl.loadDefaultStats();
-        
+        ui.welcomeUser(sl.getPlayerName());
+        sl.loadDefaultStats();
+
     }
-    private void battlePhase(){
+
+    private void plot() {
+        ui.gameStory();
+    }
+
+    private void battlePhase() {
         Player player = sl.getCurrentPlayerStats();
-        player = ui.battlePhase(player,sl.spawnRandomLowTierMonster());
+        player = ui.battlePhase(player, sl.spawnRandomLowTierMonster());
         sl.setCurrentPlayerStats(player);
+    }
+
+    private void newFloorPrompt(int floor) {
+        ui.promptUserCongratsNewFloor(floor);
     }
 }

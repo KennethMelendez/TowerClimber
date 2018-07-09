@@ -16,11 +16,11 @@ import com.sg.text.based.consolegame.model.Player;
 public class ServiceLayerImpl implements ServiceLayer {
 
     Dao dao;
-    
-    public ServiceLayerImpl(Dao dao){
+
+    public ServiceLayerImpl(Dao dao) {
         this.dao = dao;
     }
-    
+
     @Override
     public void loadMonsters() {
         dao.loadMonsters();
@@ -33,7 +33,7 @@ public class ServiceLayerImpl implements ServiceLayer {
 
     @Override
     public void setPlayerName(String playerName) {
-       dao.setPlayerName(playerName);
+        dao.setPlayerName(playerName);
     }
 
     @Override
@@ -55,5 +55,30 @@ public class ServiceLayerImpl implements ServiceLayer {
     public void loadDefaultStats() {
         dao.loadDefaultStats();
     }
-    
+
+    @Override
+    public boolean checkIfNextFloor() {
+        return dao.checkIfNextFloor();
+    }
+
+    @Override
+    public int getPlayerSteps() {
+        return dao.getPlayerSteps();
+    }
+
+    @Override
+    public void setPlayerSteps(int playerSteps) {
+        dao.setPlayerSteps(playerSteps);
+    }
+
+    @Override
+    public int getTowerFloor() {
+        return dao.getTowerFloor();
+    }
+
+    @Override
+    public void setTowerFloor(int towerFloor) {
+        dao.setTowerFloor(towerFloor);
+    }
+
 }

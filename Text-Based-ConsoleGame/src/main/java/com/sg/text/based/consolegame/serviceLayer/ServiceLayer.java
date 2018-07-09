@@ -27,4 +27,14 @@ public interface ServiceLayer {
     public void setCurrentPlayerStats(Player currentPlayerStats);
     
     public void loadDefaultStats();
+
+    public boolean checkIfNextFloor();
+
+    public int getPlayerSteps();
+
+    public void setPlayerSteps(int playerSteps);
+
+    public int getTowerFloor();
+
+    public void setTowerFloor(int towerFloor);
 }

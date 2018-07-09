@@ -45,13 +45,19 @@ public class UI {
             int monstersHP = monster.getHealthPoints() - player.getAttackPoints();
             io.displayText(monster.getName() +" HP : " + monstersHP);
             if(monstersHP <= 0){
+                player.setExp(monster.getExp() + player.getExp());//set exp
+                player.setGold(monster.getGold() + player.getGold());
+                io.displayText("Current EXP : " + player.getExp());
+                io.displayText("Current GOLD : " + player.getGold());
                 break;
             } else {
                 monster.setHealthPoints(monstersHP);
             }
             io.displayText(monster.getName() + " attacks!");
             pressAnyKeyToContinue();
-            playerHP = playerHP - (monster.getAttackPoints() - player.getDefensePoints());
+            playerHP = playerHP - monster.getAttackPoints();
+            playerHP += player.getDefensePoints();
+            player.setHealthPoints(playerHP);
             if(playerHP <= 0){
                 isAlive = false;
                 break;
@@ -74,6 +80,16 @@ public class UI {
     
     public void welcomeUser(String name){
         io.displayText("Welcome ... " + name);
+    }
+    
+    public void gameStory(){
+        io.displayText("Can you survive the tower? ");
+        io.displayText("*You proceed to enter the forbidden tower.*");
+    }
+    
+    public void promptUserCongratsNewFloor(int floorNum){
+        io.displayText("You reached a new floor! Floor : " + floorNum);
+        this.pressAnyKeyToContinue();
     }
 
 }
