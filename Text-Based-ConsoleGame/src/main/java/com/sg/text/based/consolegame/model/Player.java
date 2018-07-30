@@ -5,7 +5,9 @@
  */
 package com.sg.text.based.consolegame.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -19,8 +21,8 @@ public class Player {
     private int attackPoints;
     private int defensePoints;
     private int exp;
-    private Item[] inventory = new Item[4];
-    private Spells[] spells = new Spells[4];
+    private List<Item> inventory = new ArrayList<>();
+    private List<Spells> spells = new ArrayList<>();
     private Weapon equipedWeapon;
     private int gold;
 
@@ -72,19 +74,19 @@ public class Player {
         this.exp = exp;
     }
 
-    public Item[] getInventory() {
+    public List<Item> getInventory() {
         return inventory;
     }
 
-    public void setInventory(Item[] inventory) {
+    public void setInventory(List<Item> inventory) {
         this.inventory = inventory;
     }
 
-    public Spells[] getSpells() {
+    public List<Spells> getSpells() {
         return spells;
     }
 
-    public void setSpells(Spells[] spells) {
+    public void setSpells(List<Spells> spells) {
         this.spells = spells;
     }
 
@@ -107,16 +109,16 @@ public class Player {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 13 * hash + Objects.hashCode(this.name);
-        hash = 13 * hash + this.healthPoints;
-        hash = 13 * hash + this.spellPoints;
-        hash = 13 * hash + this.attackPoints;
-        hash = 13 * hash + this.defensePoints;
-        hash = 13 * hash + this.exp;
-        hash = 13 * hash + Arrays.deepHashCode(this.inventory);
-        hash = 13 * hash + Arrays.deepHashCode(this.spells);
-        hash = 13 * hash + Objects.hashCode(this.equipedWeapon);
-        hash = 13 * hash + this.gold;
+        hash = 89 * hash + Objects.hashCode(this.name);
+        hash = 89 * hash + this.healthPoints;
+        hash = 89 * hash + this.spellPoints;
+        hash = 89 * hash + this.attackPoints;
+        hash = 89 * hash + this.defensePoints;
+        hash = 89 * hash + this.exp;
+        hash = 89 * hash + Objects.hashCode(this.inventory);
+        hash = 89 * hash + Objects.hashCode(this.spells);
+        hash = 89 * hash + Objects.hashCode(this.equipedWeapon);
+        hash = 89 * hash + this.gold;
         return hash;
     }
 
@@ -153,10 +155,10 @@ public class Player {
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
-        if (!Arrays.deepEquals(this.inventory, other.inventory)) {
+        if (!Objects.equals(this.inventory, other.inventory)) {
             return false;
         }
-        if (!Arrays.deepEquals(this.spells, other.spells)) {
+        if (!Objects.equals(this.spells, other.spells)) {
             return false;
         }
         if (!Objects.equals(this.equipedWeapon, other.equipedWeapon)) {
@@ -165,8 +167,6 @@ public class Player {
         return true;
     }
 
-  
-    
     
     
 }

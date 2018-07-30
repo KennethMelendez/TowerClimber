@@ -33,20 +33,16 @@ public class Controller {
         do {
 
             // checking the current step and resetting the step
-            
             int currentStep = sl.getPlayerSteps();
             int currentFloor = sl.getTowerFloor();
             currentStep += 1;
             sl.setPlayerSteps(currentStep);
- 
+
             //checking if its the next floor and then being able to trigger an event
-            
             if (sl.checkIfNextFloor()) {
 
-                
-               
-                
-                
+                Player setNewItemToPlayer = ui.promptStore(sl.getCurrentPlayerStats());
+                sl.setCurrentPlayerStats(setNewItemToPlayer);
 
                 currentFloor += 1;
                 sl.setTowerFloor(currentFloor);
@@ -90,7 +86,5 @@ public class Controller {
     private void newFloorPrompt(int floor) {
         ui.promptUserCongratsNewFloor(floor);
     }
-    
-    
-    
+
 }

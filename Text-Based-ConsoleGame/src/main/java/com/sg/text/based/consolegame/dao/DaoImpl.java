@@ -71,7 +71,7 @@ public class DaoImpl implements Dao {
     public void loadDefaultStats() {
         Player newPlayer = new Player();
         newPlayer.setName(this.getPlayerName());
-        newPlayer.setAttackPoints(3);
+        newPlayer.setAttackPoints(5);
         newPlayer.setDefensePoints(1);
         newPlayer.setHealthPoints(15);
         newPlayer.setSpellPoints(0);
@@ -177,5 +177,6 @@ public class DaoImpl implements Dao {
     public void setCurrentPlayerStats(Player currentPlayerStats) {
         this.currentPlayerStats = currentPlayerStats;
     }
+    
 
 }
