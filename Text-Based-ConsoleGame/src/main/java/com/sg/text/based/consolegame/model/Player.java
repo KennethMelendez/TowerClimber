@@ -15,6 +15,7 @@ import java.util.Objects;
  * @author kmlnd
  */
 public class Player {
+    
     private String name;
     private int healthPoints;
     private int spellPoints;

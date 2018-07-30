@@ -102,24 +102,24 @@ public class UI {
 
         Map<Integer, Item> storeItems = new HashMap<>();
 
+        Item potion = new Item();
+        potion.setId(UUID.randomUUID().toString().hashCode());
+        potion.setName("Potion");
+        potion.setCost(2);
+        potion.setDescription("Increase health by 5");
+        storeItems.put(potion.getId(), potion);
+
+        Item superPotion = new Item();
+        superPotion.setName("Super Potion");
+        superPotion.setCost(5);
+        superPotion.setDescription("Fully Restores Health");
+        superPotion.setId(UUID.randomUUID().toString().hashCode());
+        storeItems.put(superPotion.getId(), superPotion);
+
         boolean askAgain = true;
         while (askAgain) {
             io.displayText("Gold : " + player.getGold());
             List<Item> playersInventory = player.getInventory();
-
-            Item potion = new Item();
-            potion.setId(UUID.randomUUID().toString().hashCode());
-            potion.setName("Potion");
-            potion.setCost(2);
-            potion.setDescription("Increase health by 5");
-            storeItems.put(potion.getId(), potion);
-
-            Item superPotion = new Item();
-            superPotion.setName("Super Potion");
-            superPotion.setCost(5);
-            superPotion.setDescription("Fully Restores Health");
-            superPotion.setId(UUID.randomUUID().toString().hashCode());
-            storeItems.put(superPotion.getId(), superPotion);
 
             displayStoreItems(new ArrayList<>(storeItems.values()));
             String response = io.readResponse("Press number key to purchase");
@@ -188,9 +188,8 @@ public class UI {
             io.displayText(key + ". " + currentItem.getName() + " : " + currentItem.getDescription());
             if (parseInt(response) == key) {
                 items.remove(items.get(key));
-                
+
                 // code to use item here
-                
                 key++;
             }
         }
