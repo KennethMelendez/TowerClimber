@@ -74,6 +74,7 @@ public class DaoImpl implements Dao {
         newPlayer.setAttackPoints(5);
         newPlayer.setDefensePoints(1);
         newPlayer.setHealthPoints(15);
+        newPlayer.setMaxHealth(15);
         newPlayer.setSpellPoints(0);
         this.setCurrentPlayerStats(newPlayer);
     }

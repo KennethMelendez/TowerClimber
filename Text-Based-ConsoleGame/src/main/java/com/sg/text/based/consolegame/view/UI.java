@@ -187,11 +187,20 @@ public class UI {
 
             io.displayText(key + ". " + currentItem.getName() + " : " + currentItem.getDescription());
             if (parseInt(response) == key) {
-                items.remove(items.get(key));
 
                 // code to use item here
-                key++;
+                switch (currentItem.getName()) {
+                    case "potion":
+                        int addedHealth = 5 + player.getHealthPoints();
+                        //add code logic for getting health
+                        break;
+                    default:
+                        break;
+                }
+
+                items.remove(items.get(key));
             }
+            key++;
         }
 
     }

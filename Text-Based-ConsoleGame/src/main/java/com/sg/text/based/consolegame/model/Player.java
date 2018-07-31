@@ -17,6 +17,7 @@ import java.util.Objects;
 public class Player {
     
     private String name;
+    private int maxHealth;
     private int healthPoints;
     private int spellPoints;
     private int attackPoints;
@@ -33,6 +34,14 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
     }
 
     public int getHealthPoints() {
@@ -109,17 +118,18 @@ public class Player {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.name);
-        hash = 89 * hash + this.healthPoints;
-        hash = 89 * hash + this.spellPoints;
-        hash = 89 * hash + this.attackPoints;
-        hash = 89 * hash + this.defensePoints;
-        hash = 89 * hash + this.exp;
-        hash = 89 * hash + Objects.hashCode(this.inventory);
-        hash = 89 * hash + Objects.hashCode(this.spells);
-        hash = 89 * hash + Objects.hashCode(this.equipedWeapon);
-        hash = 89 * hash + this.gold;
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.name);
+        hash = 67 * hash + this.maxHealth;
+        hash = 67 * hash + this.healthPoints;
+        hash = 67 * hash + this.spellPoints;
+        hash = 67 * hash + this.attackPoints;
+        hash = 67 * hash + this.defensePoints;
+        hash = 67 * hash + this.exp;
+        hash = 67 * hash + Objects.hashCode(this.inventory);
+        hash = 67 * hash + Objects.hashCode(this.spells);
+        hash = 67 * hash + Objects.hashCode(this.equipedWeapon);
+        hash = 67 * hash + this.gold;
         return hash;
     }
 
@@ -135,6 +145,9 @@ public class Player {
             return false;
         }
         final Player other = (Player) obj;
+        if (this.maxHealth != other.maxHealth) {
+            return false;
+        }
         if (this.healthPoints != other.healthPoints) {
             return false;
         }
