@@ -39,6 +39,9 @@ public class UI {
     }
 
     public Player battlePhase(Player player, Monster monster) {
+
+        viewPlayersInventoryAndUseItem(player);
+
         boolean isAlive = true;
         io.displayText("You encountered " + monster.getName() + " ...");
         io.displayText(monster.getBattleCry());
@@ -179,29 +182,39 @@ public class UI {
         }
     }
 
-    public void viewPlayersInventoryAndUseItem(Player player) {
-        List<Item> items = player.getInventory();
-        String response = io.readResponse("Press number key to purchase");
-        int key = 0;
-        for (Item currentItem : player.getInventory()) {
+    public Player viewPlayersInventoryAndUseItem(Player player) {
 
-            io.displayText(key + ". " + currentItem.getName() + " : " + currentItem.getDescription());
-            if (parseInt(response) == key) {
+        if (!player.getInventory().isEmpty()) {
 
-                // code to use item here
-                switch (currentItem.getName()) {
-                    case "potion":
-                        int addedHealth = 5 + player.getHealthPoints();
-                        //add code logic for getting health
-                        break;
-                    default:
-                        break;
-                }
+            List<Item> items = player.getInventory();
+            int key = -1;
+            for (Item currentItem : items) {
+                key++;
+                io.displayText(key + ". " + currentItem.getName());
 
-                items.remove(items.get(key));
             }
-            key++;
-        }
 
+            String promptUser = io.readResponse("Choose an Item?");
+            //int itemIndex = player.getInventory().indexOf(Integer.parseInt(promptUser));
+            try {
+                Item chosenItem = player.getInventory().get(Integer.parseInt(promptUser));
+
+                switch (chosenItem.getName()) {
+                    case "Potion":
+                        int hp = player.getHealthPoints() + 5;
+                        if (hp > player.getMaxHealth()) {
+                            player.setHealthPoints(player.getMaxHealth());
+                        }
+                        break;
+
+                    case "Super Potion":
+                        player.setHealthPoints(player.getMaxHealth());
+                }
+            } catch (NumberFormatException ex){
+                io.displayText("*Could not take choose item in time...gets ambushed*");
+            }
+
+        }
+        return player;
     }
 }
